@@ -30,8 +30,8 @@ db.himalyas.insertMany([{
   },
 ])
 
-- find all documents from mountains
-db.mountains.find();
+- find all documents from himalyas
+db.himalyas.find();
 
 - find a single document using name
-db.mountains.findOne({name: 'Dhauldhar range'});
+db.himalyas.findOne({name: 'Dhauldhar range'});
