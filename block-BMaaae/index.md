@@ -9,24 +9,26 @@ use sports
 show dbs
 
 - create 3 collections named `cricket`, `football`, `TT` in sports databse.
-db.createCollection('cricket', 'football', 'TT');
+db.createCollection('cricket');
+db.createCollection('football');
+db.createCollection('TT');
 
 - add multiple players in those collections which should have fields like `name`, `age` and `email` and `bid_price`.
-db.cricket.insert([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: 25$}]);
-db.football.insert([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: 25$}]);
-db.TT.insert([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: 25$}]);
+db.cricket.insertMany([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: "25$"}]);
+db.football.insertMany([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: "25$"}]);
+db.TT.insertMany([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: "25$"}]);
 
 - list all collections in sports database.
 show collections
 
 - rename `TT` collection to `tennis`.
-TT.rename('tennis');
+db.TT.renameCollection('tennis');
 
 - create a capped collection called `khokho` which should have max 3 documents.
 db.createCollection('khokho', {capped: true, size: 1024, max: 3});
 
   Try inserting more than 3 and see what happens?
-  db.khokho.insertMany([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: 25$}])
+  db.khokho.insertMany([{name: 'Ashwini'}, {age: 23}, {email: 'ashwinigpt1996@gmail.com'}, {bid_price: "25$"}])
 
 - check whether a collection is capped or not?
 db.khokho.isCapped();
