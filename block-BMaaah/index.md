@@ -3,7 +3,11 @@ writeCode
 Write code to execute below expressions.
 
 1. Create a database named `blog`.
+use blog
+
 2. Create a collection called 'articles'.
+db.createCollection('articles');
+
 3. Insert multiple documents(at least 3) into articles. It should have fields
 
 - title as string
@@ -33,23 +37,43 @@ Write code to execute below expressions.
 ```
 
 4. Find all the articles using `db.COLLECTION_NAME.find()`
+db.articles.find();
+
 5. Find a document using \_id field.
+
+
 6. 1. Find documents using title
+db.articles.find({title: 'Ashwini'});
+
 7. 2. Find documents using author's name field.
+db.articles.find()
+
 8. Find document using a specific tag.
 
+
 9. Update title of a document using its \_id field.
+
+
 10. Update a author's name using article's title.
+db.articles.update({title: 'Ashwini Gupta'}, {author: {name: 'Aish'}});
+
 11. rename details field to description from all articles in articles collection.
+
+
 12. Add additional tag in a specific document.
+db.articles.update({title: 'Ashwini Gupta'}, {$push: {tags: 'node-js'}});
 
 13. Update an article's title using $set and without $set.
+db.articles.update({details: 'vannasah'}, {$set:{title: 'vandana'}});
+db.articles.update({details: 'vannasah'},{title: 'vandana'}});
 
 - Write the differences here ?
 
 13. find an article using title and increment it's auhtor's age by 5.
+db.articles.find({title: 'Vandana Sah'}, {author: {age: 28}});
 
 14. Delete a document using \_id field with `db.COLLECTION_NAME.remove()`.
+db.articles.remove()
 
 // Sample data
 
@@ -168,6 +192,13 @@ db.users.insertMany([
 Insert above data into database to perform below queries:-
 
 - Find all males who play cricket.
+db.users.find({gender: "Male" , sports: "cricket"});
+
 - Update user with extra golf field in sports array whose name is "Steve Ortega".
+db.users.update({name: "Steve Ortega"},{$push: {sports: "golf"}});
+
 - Find all users who play either 'football' or 'cricket'.
+db.users.find({$or: [{sports: "football"}, {sports: "cricket"}]});
+
 - Find all users whose name includes 'ri' in their name.
+db.users.find({name: }.includes('ri'));
