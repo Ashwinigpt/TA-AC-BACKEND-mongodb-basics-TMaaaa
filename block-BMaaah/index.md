@@ -35,30 +35,32 @@ db.createCollection('articles');
   tags: ['js', 'mongo']
 }
 ```
+db.articles.insertMany(articles);
+
 
 4. Find all the articles using `db.COLLECTION_NAME.find()`
 db.articles.find();
 
 5. Find a document using \_id field.
-
+db.articles.findOne({"_id" : ObjectId("62442241f953a3bb4f664133")});
 
 6. 1. Find documents using title
-db.articles.find({title: 'Ashwini'});
+db.articles.find({title: 'Ashwini Gupta'});
 
 7. 2. Find documents using author's name field.
-db.articles.find()
+db.articles.find({"author.name" : "Shanaya"});
 
 8. Find document using a specific tag.
-
+db.articles.find({tags: ['html', 'css']});
 
 9. Update title of a document using its \_id field.
-
+db.articles.update({"_id" : ObjectId("62442241f953a3bb4f664132")}, {$set: {title : "Vandana Annu Sah"}});
 
 10. Update a author's name using article's title.
-db.articles.update({title: 'Ashwini Gupta'}, {author: {name: 'Aish'}});
+db.articles.update({"title": "Ashwini Gupta"}, {$set: {"author.name": "Aish"}});
 
 11. rename details field to description from all articles in articles collection.
-
+db.articles.update({}, {$rename: {details: "description"}}, {multi: true});
 
 12. Add additional tag in a specific document.
 db.articles.update({title: 'Ashwini Gupta'}, {$push: {tags: 'node-js'}});
@@ -70,10 +72,10 @@ db.articles.update({details: 'vannasah'},{title: 'vandana'}});
 - Write the differences here ?
 
 13. find an article using title and increment it's auhtor's age by 5.
-db.articles.find({title: 'Vandana Sah'}, {author: {age: 28}});
+db.articles.update({title: 'Vandana Sah'}, {$inc: {"author.age": 5}});
 
 14. Delete a document using \_id field with `db.COLLECTION_NAME.remove()`.
-db.articles.remove()
+db.articles.remove({"_id" : ObjectId("62442241f953a3bb4f664132")});
 
 // Sample data
 
@@ -201,4 +203,4 @@ db.users.update({name: "Steve Ortega"},{$push: {sports: "golf"}});
 db.users.find({$or: [{sports: "football"}, {sports: "cricket"}]});
 
 - Find all users whose name includes 'ri' in their name.
-db.users.find({name: }.includes('ri'));
+db.users.find({name: /ri/i});
